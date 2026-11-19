@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090909" />
+  <title>AutoClip — AI Clipping Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="AutoClip home">
+        <span class="brand-mark"><span></span></span>
+        <span>AutoClip</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10M9.5 20v-6h5v6"/></svg><span>Studio</span></a>
+        <a class="nav-item" href="#clips"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3Z"/></svg><span>My clips</span><b>4</b></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-item ghost" id="themeButton"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg><span>Light mode</span></button>
+        <button class="profile"><span class="avatar">CS</span><span><strong>Sultan</strong><small>Free plan</small></span><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">WORKSPACE</p>
+          <h1>Create clips</h1>
+        </div>
+        <button class="upgrade"><svg viewBox="0 0 24 24"><path d="m12 3 2.4 4.86L20 8.73l-4 3.9.94 5.51L12 15.61l-4.94 2.53L8 12.63l-4-3.9 5.6-.87Z"/></svg>Upgrade plan</button>
+      </header>
+
+      <section class="creator">
+        <div class="source-panel">
+          <label for="videoUrl">YouTube video</label>
+          <div class="url-row">
+            <div class="url-input">
+              <svg viewBox="0 0 24 24"><path d="M10.59 13.41a2 2 0 0 0 2.82 0l3.18-3.18a4 4 0 0 0-5.66-5.66l-1.82 1.82M13.41 10.59a2 2 0 0 0-2.82 0l-3.18 3.18a4 4 0 0 0 5.66 5.66l1.82-1.82"/></svg>
+              <input id="videoUrl" type="url" value="https://www.youtube.com/watch?v=irNhWMG560k" aria-label="YouTube video URL" />
+            </div>
+            <button class="primary" id="analyzeButton">Analyze video <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+
+          <div class="video-card">
+            <div class="video-wrap">
+              <iframe id="videoFrame" src="https://www.youtube-nocookie.com/embed/irNhWMG560k" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+              <div>
+                <p class="video-tag">DEMO VIDEO</p>
+                <h2 id="videoTitle">irNhWMG560k</h2>
+              </div>
+              <button class="icon-button" title="More options"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="settings-panel">
+          <div class="settings-heading"><h3>Clip settings</h3><span>AI</span></div>
+
+          <fieldset>
+            <legend>Format</legend>
+            <div class="format-grid">
+              <button class="format active" data-format="9:16"><span class="format-preview portrait"></span><strong>9:16</strong><small>Shorts</small></button>
+              <button class="format" data-format="1:1"><span class="format-preview square"></span><strong>1:1</strong><small>Square</small></button>
+              <button class="format" data-format="16:9"><span class="format-preview landscape"></span><strong>16:9</strong><small>Wide</small></button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Clip length</legend>
+            <div class="segment-options">
+              <button data-length="15">15 sec</button>
+              <button class="active" data-length="30">30 sec</button>
+              <button data-length="60">60 sec</button>
+              <button data-length="90">90 sec</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Subtitles</legend>
+            <label class="toggle-row"><span><span class="caption-icon">CC</span><span>Animated captions</span></span><input type="checkbox" checked /><i></i></label>
+          </fieldset>
+
+          <button class="generate" id="generateButton"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.64 5.64l12.72 12.72M18.36 5.64 5.64 18.36"/></svg><span>Generate clips</span></button>
+        </aside>
+      </section>
+
+      <section class="clips-section" id="clips">
+        <div class="clips-heading"><div><p class="eyebrow">RESULTS</p><h2>Your clips</h2></div><button class="filter-button">Most relevant <svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></button></div>
+        <div class="clips-grid" id="clipsGrid">
+          <article class="clip-card">
+            <div class="clip-preview"><img src="https://i.ytimg.com/vi/irNhWMG560k/hqdefault.jpg" alt="Video thumbnail"><span class="duration">0:30</span><button class="play" aria-label="Play clip"><svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z"/></svg></button></div>
+            <div class="clip-details"><div><h3>Opening highlight</h3><p>0:00 – 0:30</p></div><button class="icon-button"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></button></div>
+          </article>
+          <article class="clip-card">
+            <div class="clip-preview"><img src="https://i.ytimg.com/vi/irNhWMG560k/mqdefault.jpg" alt="Video thumbnail"><span class="duration">0:30</span><button class="play" aria-label="Play clip"><svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z"/></svg></button></div>
+            <div class="clip-details"><div><h3>Key moment</h3><p>0:30 – 1:00</p></div><button class="icon-button"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></button></div>
+          </article>
+          <article class="clip-card empty-card"><div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div><strong>Create a new clip</strong><span>Choose a moment in the video</span></article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast">Clips generated successfully</div>
+  <script src="script.js"></script>
+</body>
+</html>
